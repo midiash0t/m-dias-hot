@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DESBLOQUEAR O ACESSO</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body, html {
+      background: linear-gradient(180deg, #000000, #1a0033);
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 20px 15px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h2 { 
+      font-size: 17px; 
+      margin-bottom: 15px; 
+      text-transform: uppercase; 
+    }
+    #timer {
+      font-size: 82px;
+      font-weight: bold;
+      color: #ff0066;
+      margin: 10px 0 20px;
+      text-shadow: 0 0 30px #ff0066;
+    }
+    .video-wrapper {
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 1 / 1;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2px solid #e91e63;
+      margin: 15px 0 25px;
+      background: #000;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* Esconde os elementos inicialmente */
+    .atenção, .abaixo, .instruções, .btn {
+      display: none;
+    }
+
+    .atenção {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffcc00;
+      margin: 15px 0;
+    }
+    .abaixo {
+      font-size: 16px;
+      margin: 10px 0 25px;
+      opacity: 0.9;
+    }
+    .btn {
+      width: 90%;
+      margin: 20px auto;
+      padding: 18px;
+      background: #e91e63;
+      color: white;
+      font-size: 21px;
+      font-weight: bold;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 0 30px #e91e63;
+      animation: pulse 1.5s infinite;
+    }
+    /* Destaque para a palavra HOT */
+    .hot-text {
+      color: #fffb00;
+      text-shadow: 0 0 10px #ff0000;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 id="titulo-topo">🚨 VOCÊ TEM 5 SEGUNDOS PARA GARANTIR SEU ACESSO </h2>
+    
+    <div id="timer">00:05</div>
+
+    <div class="video-wrapper">
+      <video autoplay loop muted playsinline>
+        <source src="https://files.catbox.moe/6b42bh.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="atenção" id="atenção">
+      ⚠️ TOQUE NOS 3 PONTOS ACIMA E ESCOLHA "ABRIR NO NAVEGADOR" 👆
+    </div>
+
+    <p class="abaixo" id="abaixo">
+      🔐 PASSO FINAL: Clique no botão abaixo 👇🚨
+    </p>
+
+    <a href="https://t.me/telemidias_bot" id="btnAcesso" class="btn">
+      🔥 VER MÍDIAS <span class="hot-text">HOT</span> 😈
+    </a>
+  </div>
+
+  <script>
+    let tempo = 5;
+    const timerEl = document.getElementById('timer');
+    const atencaoEl = document.getElementById('atenção');
+    const abaixoEl = document.getElementById('abaixo');
+    const btnEl = document.getElementById('btnAcesso');
+    const tituloEl = document.getElementById('titulo-topo');
+
+    const intervalo = setInterval(() => {
+      tempo--;
+      timerEl.textContent = `00:0${tempo}`;
+
+      if (tempo <= 0) {
+        clearInterval(intervalo);
+        timerEl.style.display = 'none'; // Esconde o timer
+        tituloEl.textContent = "✅ ACESSO LIBERADO COM SUCESSO!"; // Muda o título
+        
+        // Mostra o botão e as instruções
+        atencaoEl.style.display = 'block';
+        abaixoEl.style.display = 'block';
+        btnEl.style.display = 'block';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
